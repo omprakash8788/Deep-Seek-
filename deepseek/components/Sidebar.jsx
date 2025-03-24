@@ -56,7 +56,30 @@ const Sidebar = ({ expand, setExpand }) => {
         </button>
 
         {/* Recent chat section */}
+        <div className={`mt-8 text-white/25 text-sm ${expand ? "block" : "hidden"}`}>
+          <p className="my-1">Recents</p>
+          {/* After that we have display to recent chat list that will get after setting of our backend, when we will send the promts in the backend and get the response from AI then we will display here. So for that we will create a seprate component  */}
+          {/* chatLevel component mount here */}
+        </div>
+
       </div>
+      {/* icon and login link */}
+      <div>
+         <div className={`flex items-center cursor-pointer group relative ${expand ? "gap-1 text-white/80 text-sm p-2.5 border border-primary rounded-lg hover:bg-white/10 cursor-pointer" : "h-10 w-10 mx-auto hover:bg-gray-500/30 rounded-lg"}`}>
+          <Image className={expand ? "w-5" :"w-6.5 mx-auto"} src={expand ? assets.phone_icon : assets.phone_icon_dull} alt=""/>
+          <div className={`absolute -top-60 pb-8 ${!expand && "-right-40"} opacity-0 group-hover:opacity-100 hidden group-hover:block transition`}>
+          <div className="relative w-max bg-black text-white text-sm p-3 rounded-lg shadow-lg">
+            {/* add barcode hare */}
+            <Image src={assets.qrcode} alt="" className="w-44"/>
+            <p>Scan to get DeepSeek App</p>
+            <div className={`w-3 h-3 absolute bg-black rotate-45 ${expand ? "right-1/2" : "left-4"} -bottom-1.5`}></div>
+          </div>
+
+          </div>
+         {expand && <> <span>Get App</span> <Image className="" src={assets.new_icon} alt=""/> </>}
+         </div>
+      </div>
+
     </div>
   );
 };
