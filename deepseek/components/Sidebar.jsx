@@ -1,8 +1,15 @@
 import Image from "next/image";
 import React from "react";
 import { assets } from "../assets/assets";
+import { useClerk, UserButton} from "@clerk/nextjs";
+
+// Note - We will use this "useClerk" to get the open sign in function from this "@clerk/nextjs"
+
+
 
 const Sidebar = ({ expand, setExpand }) => {
+  const  {openSignIn} = useClerk()
+  // After that we will link this function "openSignIn" to our buttons
   return (
     <div
       className={`flex flex-col justify-between bg-[#212327] pt-7 transition-all z-50 max-md:absolute max-md:h-screen ${
@@ -79,7 +86,7 @@ const Sidebar = ({ expand, setExpand }) => {
          {expand && <> <span>Get App</span> <Image className="" src={assets.new_icon} alt=""/> </>}
          </div>
          {/* user profile section */}
-         <div className={`flex items-center ${expand ? 'hover:bg-white/10 rounded-lg' : 'justify-center w-full'} gap-3 text-white/60 text-sm p-2 mt-2 cursor-pointer`}>
+         <div onClick={openSignIn} className={`flex items-center ${expand ? 'hover:bg-white/10 rounded-lg' : 'justify-center w-full'} gap-3 text-white/60 text-sm p-2 mt-2 cursor-pointer`}>
           <Image src={assets.profile_icon} alt="" className="w-7"/>
           {expand && <span>My Profile</span> }
          </div>
